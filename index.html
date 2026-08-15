@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio de Votre Nom, développeur web." />
+    <title>Votre Nom — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo" href="#accueil" aria-label="Retour à l'accueil">VN<span>.</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#apropos">À propos</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="accueil">
+        <p class="eyebrow">Disponible pour de nouveaux projets</p>
+        <h1>Bonjour, je suis<br /><em>Votre Nom.</em></h1>
+        <p class="intro">Développeur web, je crée des expériences numériques claires, rapides et utiles.</p>
+        <a class="button" href="#projets">Voir mes projets <span>↘</span></a>
+      </section>
+      <section class="about section" id="apropos">
+        <p class="section-label">01 — À propos</p>
+        <div class="about-copy">
+          <h2>Des idées simples,<br />bien exécutées.</h2>
+          <p>J’aime transformer les problèmes en interfaces fluides et accessibles. Mon approche combine une attention aux détails, une communication directe et du code propre.</p>
+          <div class="skills"><span>HTML / CSS</span><span>JavaScript</span><span>React</span><span>UI Design</span></div>
+        </div>
+      </section>
+      <section class="projects section" id="projets">
+        <p class="section-label">02 — Projets sélectionnés</p>
+        <div class="project-list">
+          <article class="project"><div class="project-visual visual-one"><span>01</span><div class="window"><i></i><i></i><i></i><b></b><b></b><b></b></div></div><div class="project-info"><div><h3>Atelier Nord</h3><p>Site vitrine · Design & développement</p></div><a href="#contact" aria-label="Découvrir Atelier Nord">↗</a></div></article>
+          <article class="project"><div class="project-visual visual-two"><span>02</span><div class="orb"></div><div class="card-line"></div><div class="card-line small"></div></div><div class="project-info"><div><h3>Finly</h3><p>Application finance · Interface produit</p></div><a href="#contact" aria-label="Découvrir Finly">↗</a></div></article>
+          <article class="project"><div class="project-visual visual-three"><span>03</span><div class="poster">M<br /><strong>O</strong><br />VE</div></div><div class="project-info"><div><h3>Move Studio</h3><p>Identité digitale · Landing page</p></div><a href="#contact" aria-label="Découvrir Move Studio">↗</a></div></article>
+        </div>
+      </section>
+      <section class="contact" id="contact">
+        <p class="section-label">03 — Contact</p>
+        <h2>Un projet en tête ?<br /><a href="mailto:bonjour@votrenom.com">Parlons-en.</a></h2>
+        <div class="contact-bottom"><span>© <span id="year"></span> Votre Nom</span><div><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></div></div>
+      </section>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>
