@@ -3,66 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Yassine Lamghari, développeur web freelance au Maroc." />
-    <title>Yassine Lamghari — Développeur web</title>
+    <meta name="description" content="Portfolio de Yassine Lamghari, développeur web." />
+    <title>Yassine Lamghari — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top">YL<span>®</span></a>
-      <nav aria-label="Navigation principale">
-        <a href="#apropos">Profil</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
-      </nav>
-      <a class="header-contact" href="mailto:yassin.lamghari14@gmail.com">Me contacter <span>↗</span></a>
+    <div class="scanlines"></div>
+    <header>
+      <a class="logo" href="#top"><span>[</span>YL<span>]</span><i>_</i></a>
+      <nav><a href="#apropos">01 / profil</a><a href="#projets">02 / projets</a><a href="#contact">03 / contact</a></nav>
+      <p class="status"><b></b> system online</p>
     </header>
-
     <main id="top">
       <section class="hero">
-        <p class="eyebrow"><span></span> Disponible pour collaborer</p>
-        <h1>Des expériences web<br /><em>qui ont du sens.</em></h1>
-        <div class="hero-bottom">
-          <p>Je suis Yassine Lamghari, développeur web basé au Maroc. Je conçois des interfaces utiles, précises et agréables à utiliser.</p>
-          <a class="round-link" href="#projets" aria-label="Voir les projets">↓</a>
-        </div>
+        <p class="command">yassine@portfolio:~$ <span>whoami</span></p>
+        <h1>Développeur<br /><span>web</span> & créatif.</h1>
+        <p class="terminal-line"><span>›</span> Je construis des expériences digitales modernes,<br />rapides et pensées pour les humains<span class="cursor">_</span></p>
+        <div class="hero-meta"><p>Based in Morocco<br />Available worldwide</p><a href="#projets">Explorer le système <span>↓</span></a></div>
       </section>
 
       <section class="about" id="apropos">
-        <p class="section-kicker">01 — Profil</p>
-        <div class="about-main">
-          <h2>Une approche<br />simple et <em>exigeante.</em></h2>
-          <div class="about-text"><p>Mon travail consiste à faire le lien entre une idée et une expérience digitale qui fonctionne vraiment. J’accorde autant d’importance au fond qu’à la finition.</p><p>De la première maquette à la mise en ligne, je cherche toujours la solution la plus claire.</p></div>
+        <div class="section-head"><p>01 / profil</p><span>/// 001</span></div>
+        <div class="about-grid">
+          <h2>Je transforme<br />des <em>idées</em> en code.</h2>
+          <div><p>Je suis Yassine Lamghari, développeur web. J’aime résoudre des problèmes avec des interfaces simples, solides et bien pensées.</p><p>Du concept au déploiement, je cherche un résultat qui soit à la fois beau, utile et performant.</p><div class="stack"><span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>REACT</span><span>UI/UX</span></div></div>
         </div>
-        <div class="expertise"><span>HTML & CSS</span><span>JavaScript</span><span>React</span><span>UI / UX</span><span>Sites responsives</span></div>
       </section>
 
-      <section class="work" id="projets">
-        <div class="work-heading"><p class="section-kicker">02 — Projets choisis</p><p>Une sélection de projets réalisés avec attention.</p></div>
-        <div class="work-grid">
-          <article class="project featured">
-            <div class="project-image atelier"><div class="atelier-label">ATELIER<br />NORD</div><div class="atelier-card"><i></i><b></b><b></b><b></b></div></div>
-            <div class="project-meta"><div><p>Site vitrine · 2025</p><h3>Atelier Nord</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+      <section class="projects" id="projets">
+        <div class="section-head"><p>02 / projets sélectionnés</p><span>/// 003</span></div>
+        <div class="project-list">
+          <article class="project">
+            <div class="project-number">[01]</div><div class="project-screen atelier"><p>ATELIER_NORD</p><div class="pixel-card"><i></i><b></b><b></b><b></b></div><small>STATUS: LIVE</small></div>
+            <div class="project-info"><p>Site vitrine / 2025</p><h3>Atelier Nord</h3><span>Identité digitale pour un studio créatif.</span><a href="#contact">ouvrir le projet ↗</a></div>
           </article>
           <article class="project">
-            <div class="project-image finly"><p>Bonjour, Yassine</p><strong>12 480,00 <small>DH</small></strong><div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="balance"><span>Revenus</span><b>+ 5 240 DH</b></div></div>
-            <div class="project-meta"><div><p>Application web · 2025</p><h3>Finly</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+            <div class="project-number">[02]</div><div class="project-screen finly"><p>FINLY_DASHBOARD</p><strong>12,480<small>.00 DH</small></strong><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>+ 12.8% / THIS MONTH</small></div>
+            <div class="project-info"><p>Application web / 2025</p><h3>Finly</h3><span>Tableau de bord personnel pour les finances.</span><a href="#contact">ouvrir le projet ↗</a></div>
           </article>
           <article class="project">
-            <div class="project-image studio"><div class="studio-copy">MOVE<br /><em>WITH</em><br />PURPOSE</div><div class="studio-circle"></div></div>
-            <div class="project-meta"><div><p>Landing page · 2024</p><h3>Move Studio</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+            <div class="project-number">[03]</div><div class="project-screen move"><p>MOVE_STUDIO</p><div class="move-type">MOVE<br /><em>_WITH</em><br />PURPOSE</div><small>EST. 2024</small></div>
+            <div class="project-info"><p>Landing page / 2024</p><h3>Move Studio</h3><span>Site de lancement pour un studio de sport.</span><a href="#contact">ouvrir le projet ↗</a></div>
           </article>
         </div>
       </section>
 
       <section class="contact" id="contact">
-        <p class="section-kicker">03 — Contact</p>
-        <h2>Créons quelque chose<br /><em>d'utile ensemble.</em></h2>
-        <a class="email" href="mailto:yassin.lamghari14@gmail.com">yassin.lamghari14@gmail.com <span>↗</span></a>
+        <p class="command">yassine@portfolio:~$ <span>contact --start</span></p>
+        <h2>Construisons<br />quelque chose de <em>fort.</em></h2>
+        <a class="contact-mail" href="mailto:yassin.lamghari14@gmail.com">yassin.lamghari14@gmail.com <span>↗</span></a>
       </section>
     </main>
-    <footer><span>© <span id="year"></span> Yassine Lamghari</span><div><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Maroc</span></footer>
+    <footer><span>© <span id="year"></span> Yassine Lamghari</span><span>Built with purpose_</span><div><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
     <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
   </body>
 </html>
