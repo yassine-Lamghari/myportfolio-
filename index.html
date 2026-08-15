@@ -3,43 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Yassine Lamghari, développeur web." />
+    <meta name="description" content="Portfolio de Yassine Lamghari, développeur web freelance au Maroc." />
     <title>Yassine Lamghari — Développeur web</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <a class="name" href="#">Yassine Lamghari</a>
-      <nav aria-label="Navigation principale"><a href="#apropos">À propos</a><a href="#projets">Projets</a><a href="#contact">Contact</a></nav>
+    <header class="site-header">
+      <a class="brand" href="#top">YL<span>®</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#apropos">Profil</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="header-contact" href="mailto:yassin.lamghari14@gmail.com">Me contacter <span>↗</span></a>
     </header>
-    <main>
-      <section class="intro">
-        <p class="availability">● Disponible pour des opportunités</p>
-        <h1>Je crée des sites web<br />simples et <em>soignés.</em></h1>
-        <p class="lead">Développeur web basé au Maroc. Je transforme les idées en expériences numériques claires et faciles à utiliser.</p>
-        <a class="primary-link" href="#projets">Découvrir mes projets <span>↓</span></a>
-      </section>
-      <section id="apropos">
-        <p class="number">01 / À propos</p>
-        <div class="content"><h2>Un travail clair,<br />du début à la fin.</h2><p>J’aime construire des interfaces utiles, rapides et accessibles. Chaque projet commence par comprendre le besoin, puis trouver la solution la plus simple possible.</p><p>Je travaille principalement avec HTML, CSS, JavaScript et React.</p></div>
-      </section>
-      <section id="projets">
-        <p class="number">02 / Projets</p>
-        <div class="content">
-          <article class="project"><div><p class="project-type">Site vitrine</p><h3>Atelier Nord</h3><p>Un site de présentation épuré pour un studio créatif.</p></div><a href="#contact">Voir le projet ↗</a></article>
-          <article class="project"><div><p class="project-type">Application web</p><h3>Finly</h3><p>Une interface simple pour mieux suivre ses finances.</p></div><a href="#contact">Voir le projet ↗</a></article>
-          <article class="project"><div><p class="project-type">Landing page</p><h3>Move Studio</h3><p>Une page de lancement moderne pour un studio de sport.</p></div><a href="#contact">Voir le projet ↗</a></article>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow"><span></span> Disponible pour collaborer</p>
+        <h1>Des expériences web<br /><em>qui ont du sens.</em></h1>
+        <div class="hero-bottom">
+          <p>Je suis Yassine Lamghari, développeur web basé au Maroc. Je conçois des interfaces utiles, précises et agréables à utiliser.</p>
+          <a class="round-link" href="#projets" aria-label="Voir les projets">↓</a>
         </div>
       </section>
+
+      <section class="about" id="apropos">
+        <p class="section-kicker">01 — Profil</p>
+        <div class="about-main">
+          <h2>Une approche<br />simple et <em>exigeante.</em></h2>
+          <div class="about-text"><p>Mon travail consiste à faire le lien entre une idée et une expérience digitale qui fonctionne vraiment. J’accorde autant d’importance au fond qu’à la finition.</p><p>De la première maquette à la mise en ligne, je cherche toujours la solution la plus claire.</p></div>
+        </div>
+        <div class="expertise"><span>HTML & CSS</span><span>JavaScript</span><span>React</span><span>UI / UX</span><span>Sites responsives</span></div>
+      </section>
+
+      <section class="work" id="projets">
+        <div class="work-heading"><p class="section-kicker">02 — Projets choisis</p><p>Une sélection de projets réalisés avec attention.</p></div>
+        <div class="work-grid">
+          <article class="project featured">
+            <div class="project-image atelier"><div class="atelier-label">ATELIER<br />NORD</div><div class="atelier-card"><i></i><b></b><b></b><b></b></div></div>
+            <div class="project-meta"><div><p>Site vitrine · 2025</p><h3>Atelier Nord</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+          </article>
+          <article class="project">
+            <div class="project-image finly"><p>Bonjour, Yassine</p><strong>12 480,00 <small>DH</small></strong><div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="balance"><span>Revenus</span><b>+ 5 240 DH</b></div></div>
+            <div class="project-meta"><div><p>Application web · 2025</p><h3>Finly</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+          </article>
+          <article class="project">
+            <div class="project-image studio"><div class="studio-copy">MOVE<br /><em>WITH</em><br />PURPOSE</div><div class="studio-circle"></div></div>
+            <div class="project-meta"><div><p>Landing page · 2024</p><h3>Move Studio</h3></div><a href="#contact">Découvrir <span>↗</span></a></div>
+          </article>
+        </div>
+      </section>
+
       <section class="contact" id="contact">
-        <p class="number">03 / Contact</p>
-        <div class="content"><h2>Vous avez une idée<br />ou un projet ?</h2><a class="email" href="mailto:yassin.lamghari14@gmail.com">yassin.lamghari14@gmail.com</a><div class="socials"><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div></div>
+        <p class="section-kicker">03 — Contact</p>
+        <h2>Créons quelque chose<br /><em>d'utile ensemble.</em></h2>
+        <a class="email" href="mailto:yassin.lamghari14@gmail.com">yassin.lamghari14@gmail.com <span>↗</span></a>
       </section>
     </main>
-    <footer>© <span id="year"></span> Yassine Lamghari</footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <footer><span>© <span id="year"></span> Yassine Lamghari</span><div><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Maroc</span></footer>
+    <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
   </body>
 </html>
