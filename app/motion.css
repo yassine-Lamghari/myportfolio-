@@ -1,0 +1,1 @@
+.reveal{animation:reveal .8s cubic-bezier(.2,.8,.2,1) both}.hero-portrait{animation:reveal .9s .12s cubic-bezier(.2,.8,.2,1) both}@keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
