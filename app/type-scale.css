@@ -1,0 +1,125 @@
+.cv-site {
+  font-size: 18px;
+}
+
+.cv-brand {
+  font-size: 15px;
+}
+
+.cv-nav button,
+.cv-menu {
+  font-size: 14px;
+}
+
+.cv-identity h1 {
+  font-size: 44px;
+}
+
+.cv-role {
+  font-size: 19px;
+}
+
+.cv-summary {
+  font-size: 18px;
+  line-height: 1.82;
+}
+
+.cv-actions a,
+.cv-contact-box button,
+.cv-contact-box > div a {
+  font-size: 14px;
+  padding: 11px 16px;
+}
+
+.cv-section h2 {
+  font-size: 30px;
+}
+
+.cv-copy {
+  font-size: 18px;
+  line-height: 1.88;
+}
+
+.cv-time {
+  font-size: 15px;
+}
+
+.cv-timeline h3 {
+  font-size: 21px;
+}
+
+.cv-timeline h3 em {
+  font-size: 15px;
+}
+
+.cv-timeline ul {
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.cv-project h3 {
+  font-size: 20px;
+}
+
+.cv-project p {
+  min-height: 72px;
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.cv-project span,
+.cv-skill-groups span {
+  font-size: 13px;
+  padding: 7px 11px;
+}
+
+.cv-project small {
+  font-size: 13px;
+}
+
+.cv-skill-groups h3 {
+  font-size: 14px;
+}
+
+.cv-rows > div {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.cv-contact-box > p,
+.cv-contact-box input {
+  font-size: 16px;
+}
+
+.cv-footer {
+  font-size: 13px;
+}
+
+@media (max-width: 820px) {
+  .cv-site {
+    font-size: 17px;
+  }
+
+  .cv-identity h1 {
+    font-size: 38px;
+  }
+
+  .cv-role {
+    font-size: 17px;
+  }
+
+  .cv-summary,
+  .cv-copy {
+    font-size: 17px;
+  }
+
+  .cv-section h2 {
+    font-size: 27px;
+  }
+
+  .cv-timeline ul,
+  .cv-project p,
+  .cv-rows > div {
+    font-size: 15px;
+  }
+}
