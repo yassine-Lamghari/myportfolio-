@@ -91,7 +91,7 @@ export default function Home() {
             <h1>Yassine Lamghari</h1>
             <p className="cv-role"><span className="cv-role-swap" key={rotatingRoles[roleIndex]}>{rotatingRoles[roleIndex]}</span></p>
             <p className="cv-summary">Étudiant ingénieur en Intelligence Artificielle et Technologies des Données. Je développe des solutions fiables, de la donnée au produit, avec un intérêt particulier pour les architectures RAG, les API et les systèmes intelligents.</p>
-            <div className="cv-actions"><a href="mailto:yassin.lamghari14@gmail.com?subject=Demande%20de%20CV">Demander mon CV</a><a href="https://linkedin.com/in/yassine-lamghari" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="mailto:yassin.lamghari14@gmail.com">Email</a></div>
+            <div className="cv-actions"><a href="mailto:yassin.lamghari14@gmail.com?subject=Demande%20de%20CV">Demander mon CV</a><a href="https://www.linkedin.com/in/yassine-lamghari-61b70b330/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="mailto:yassin.lamghari14@gmail.com">Email</a></div>
           </div>
         </section>
 
@@ -111,7 +111,7 @@ export default function Home() {
 
         <section className="cv-section" id="certifications" data-reveal><h2>Certifications</h2><div className="cv-rows cv-certifications"><div><strong>Python for Data Science, AI &amp; Development</strong><span>IBM / Coursera</span><time>2025</time></div><div><strong>ML: Decision Trees &amp; Random Forests</strong><span>365 Data Science</span><time>2025</time></div><div><strong>SQL Fundamentals</strong><span>365 Data Science</span><time>2026</time></div></div></section>
 
-        <section className="cv-section cv-contact" id="contact" data-reveal><h2>Contact</h2><div className="cv-contact-box"><p>Une opportunité, un projet data/IA ou simplement échanger ? N&apos;hésitez pas.</p><form onSubmit={sendMessage}><input aria-label="Votre email" type="email" required placeholder="votre@email.com" /><button type="submit">Écrivez-moi un email</button></form>{message && <p className="cv-form-message" role="status">{message}</p>}<div><a href="https://linkedin.com/in/yassine-lamghari" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a></div></div></section>
+        <section className="cv-section cv-contact" id="contact" data-reveal><h2>Contact</h2><div className="cv-contact-box"><p>Une opportunité, un projet data/IA ou simplement échanger ? N&apos;hésitez pas.</p><form onSubmit={sendMessage}><input aria-label="Votre email" type="email" required placeholder="votre@email.com" /><button type="submit">Écrivez-moi un email</button></form>{message && <p className="cv-form-message" role="status">{message}</p>}<div><a href="https://www.linkedin.com/in/yassine-lamghari-61b70b330/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a></div></div></section>
       </div>
       <footer className="cv-footer"><div>© 2026 Yassine Lamghari · Tous droits réservés.</div><div>Fait avec attention au Maroc</div></footer>
     </main>
