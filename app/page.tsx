@@ -1,35 +1,69 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  fallbackAbout,
+  fallbackCertifications,
+  fallbackContact,
+  fallbackEducation,
+  fallbackExperiences,
+  fallbackProfile,
+  fallbackProjects,
+  fallbackSkillGroups,
+} from "@/lib/fallback";
 
 const navItems = [["À propos", "about"], ["Expériences", "experience"], ["Projets", "projects"], ["Compétences", "skills"], ["Contact", "contact"]] as const;
-const rotatingRoles = ["AI Engineer", "Backend Developer", "Data & LLM Engineer"];
 
-const projects = [
-  { title: "Architecture RAG & Chatbot Intelligent", body: "Pipeline Retrieval-Augmented Generation avec base de connaissances indexée et interface conversationnelle capable de répondre à des questions contextuelles.", tags: ["RAG", "LangChain", "LlamaIndex", "Python"], note: "Projet personnel · 2025" },
-  { title: "Prévision Forex EUR/USD", body: "Modèle prédictif de séries temporelles à base de LSTM, collecte via Alpha Vantage et analyses exploratoires approfondies.", tags: ["LSTM", "Pandas", "Scikit-learn", "API"], note: "Data Science · 2025" },
-  { title: "Détection de tricherie — Computer Vision", body: "Système de surveillance de flux vidéo en temps réel pour identifier des comportements suspects en salle d’examen.", tags: ["OpenCV", "TensorFlow", "CNN", "Python"], note: "Computer Vision · 2025" },
-  { title: "Simulateur de Bowling en Réalité Augmentée", body: "Expérience immersive de bowling conçue avec Unity et les technologies XR pour une interaction réaliste.", tags: ["Unity", "XR", "AR/VR"], note: "Immersive Tech · 2025" },
-  { title: "Plateforme d’automatisation de recherche", body: "Plateforme qui automatise la recherche de stage et d’emploi, l’analyse des offres et la génération de documents.", tags: ["Next.js", "Supabase", "LLM", "LaTeX"], note: "Projet personnel · 2026" },
-];
-
-const skillGroups = [
-  ["MACHINE LEARNING, IA & COMPUTER VISION", ["Python", "Scikit-learn", "PyTorch", "TensorFlow", "LSTM", "CNN", "OpenCV", "RAG"]],
-  ["GENAI & NLP", ["LangChain", "LlamaIndex", "LLM", "NLP", "Agents", "Groq", "Recherche sémantique"]],
-  ["ENGINEERING & MLOPS", ["FastAPI", "Docker", "Docker Compose", "REST API", "Git", "GitHub", "Pytest"]],
-  ["DATA & CLOUD", ["SQL", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Google Colab"]],
-];
+type DataState = {
+  profile: typeof fallbackProfile;
+  about: typeof fallbackAbout;
+  experiences: typeof fallbackExperiences;
+  projects: typeof fallbackProjects;
+  skillGroups: typeof fallbackSkillGroups;
+  education: typeof fallbackEducation;
+  certifications: typeof fallbackCertifications;
+  contact: typeof fallbackContact;
+};
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [message, setMessage] = useState("");
   const [activeSection, setActiveSection] = useState("about");
   const [roleIndex, setRoleIndex] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [data, setData] = useState<DataState>({
+    profile: fallbackProfile,
+    about: fallbackAbout,
+    experiences: fallbackExperiences,
+    projects: fallbackProjects,
+    skillGroups: fallbackSkillGroups,
+    education: fallbackEducation,
+    certifications: fallbackCertifications,
+    contact: fallbackContact,
+  });
+  const [message, setMessage] = useState("");
+
   const goTo = (id: string) => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); };
-  const sendMessage = (event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); setMessage("Merci, votre message est prêt à être envoyé. Je vous répondrai rapidement."); };
+  const sendMessage = (event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); setMessage(data.contact.success); };
 
   useEffect(() => {
+    let cancelled = false;
+    fetch("/api/content", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((c: any) => {
+        if (cancelled || !c?.ok) return;
+        setData({
+          profile: c.profile || fallbackProfile,
+          about: c.about || fallbackAbout,
+          experiences: (c.experiences?.length ? c.experiences : fallbackExperiences) as any,
+          projects: (c.projects?.length ? c.projects : fallbackProjects) as any,
+          skillGroups: (c.skillGroups?.length ? c.skillGroups : fallbackSkillGroups) as any,
+          education: (c.education?.length ? c.education : fallbackEducation) as any,
+          certifications: (c.certifications?.length ? c.certifications : fallbackCertifications) as any,
+          contact: c.contact || fallbackContact,
+        });
+      })
+      .catch(() => {});
+
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -59,24 +93,34 @@ export default function Home() {
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
 
+    const roles = data.profile.roles?.length ? data.profile.roles : fallbackProfile.roles;
     const roleTimer = reduceMotion ? undefined : window.setInterval(() => {
-      setRoleIndex((current) => (current + 1) % rotatingRoles.length);
+      setRoleIndex((current) => (current + 1) % roles.length);
     }, 2600);
 
     return () => {
+      cancelled = true;
       revealObserver.disconnect();
       sectionObserver.disconnect();
       window.removeEventListener("scroll", updateProgress);
       if (roleTimer) window.clearInterval(roleTimer);
     };
-  }, []);
+  }, [data.profile.roles?.length]);
+
+  const roles = data.profile.roles?.length ? data.profile.roles : fallbackProfile.roles;
+  const brandInitials = (data.profile.name || fallbackProfile.name).split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
+  const cvEmail = data.profile.email || fallbackProfile.email;
+  const cvSubject = encodeURIComponent("Demande de CV");
+  const cvLink = `mailto:${cvEmail}?subject=${cvSubject}`;
+  const cvDirect = `mailto:${cvEmail}`;
+  const year = new Date().getFullYear();
 
   return (
     <main className="cv-site">
       <header className="cv-topbar">
         <div className="cv-progress" aria-hidden="true"><span style={{ width: `${scrollProgress}%` }} /></div>
         <div className="cv-topbar-inner">
-          <a className="cv-brand" href="#accueil" onClick={() => goTo("accueil")}><span>YL</span> Yassine Lamghari</a>
+          <a className="cv-brand" href="#accueil" onClick={() => goTo("accueil")}><span>{brandInitials}</span> {data.profile.name}</a>
           <nav className={menuOpen ? "cv-nav is-open" : "cv-nav"} aria-label="Navigation">
             {navItems.map(([label, id]) => <button className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "page" : undefined} onClick={() => goTo(id)} key={id}>{label}</button>)}
           </nav>
@@ -86,34 +130,114 @@ export default function Home() {
 
       <div className="cv-shell" id="accueil">
         <section className="cv-identity is-visible" data-reveal>
-          <img className="cv-avatar" src="/yassine-lamghari-new.jpg" alt="Yassine Lamghari" />
+          <img className="cv-avatar" src={data.profile.avatar} alt={data.profile.name} />
           <div>
-            <h1>Yassine Lamghari</h1>
-            <p className="cv-role"><span className="cv-role-swap" key={rotatingRoles[roleIndex]}>{rotatingRoles[roleIndex]}</span></p>
-            <p className="cv-summary">Étudiant ingénieur en Intelligence Artificielle et Technologies des Données. Je développe des solutions fiables, de la donnée au produit, avec un intérêt particulier pour les architectures RAG, les API et les systèmes intelligents.</p>
-            <div className="cv-actions"><a href="mailto:yassin.lamghari14@gmail.com?subject=Demande%20de%20CV">Demander mon CV</a><a href="https://www.linkedin.com/in/yassine-lamghari-61b70b330/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a><a href="mailto:yassin.lamghari14@gmail.com">Email</a></div>
+            <h1>{data.profile.name}</h1>
+            <p className="cv-role"><span className="cv-role-swap" key={roles[roleIndex]}>{roles[roleIndex]}</span></p>
+            <p className="cv-summary">{data.profile.summary}</p>
+            <div className="cv-actions">
+              <a href={cvLink}>Demander mon CV</a>
+              <a href={data.profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href={data.profile.github} target="_blank" rel="noreferrer">GitHub</a>
+              <a href={cvDirect}>Email</a>
+            </div>
           </div>
         </section>
 
-        <section className="cv-section" id="about" data-reveal><h2>À propos</h2><div className="cv-copy"><p><strong>Ingénieur IA en formation,</strong> je construis des applications capables de transformer des données et des modèles en outils concrets. Mon approche combine précision technique, architecture logicielle et attention au besoin utilisateur.</p><p>J&apos;interviens sur le cycle complet : conception de backends, intégration de modèles de langage, préparation de données, déploiement Docker et tests. Je recherche des projets où l&apos;intelligence artificielle apporte une valeur mesurable.</p></div></section>
+        <section className="cv-section" id="about" data-reveal>
+          <h2>À propos</h2>
+          <div className="cv-copy">
+            {data.about.paragraphs.map((p, i) => <p key={i} dangerouslySetInnerHTML={{ __html: p }} />)}
+          </div>
+        </section>
 
-        <section className="cv-section" id="experience" data-reveal><h2>Expériences</h2><div className="cv-timeline">
-          <article><span className="cv-marker" /><div className="cv-time">Sept. 2025 — 2026</div><div><h3>AI Backend Engineer <em>Arimayi · France</em></h3><ul><li>Conception d&apos;un backend d&apos;orchestration Python/FastAPI pour coordonner des services IA : analyse de sentiment, traduction, résumé et OCR.</li><li>Communication asynchrone entre API centrale et micro-services, avec intégration de modèles LLM externes et base de données.</li><li>Conteneurisation Docker, Docker Compose et stratégie de tests unitaires, intégration et end-to-end avec Pytest.</li></ul></div></article>
-          <article><span className="cv-marker" /><div className="cv-time">Juin — Sept. 2025</div><div><h3>Stagiaire IA <em>CHU · Fès, Maroc</em></h3><ul><li>Développement d&apos;un module de détection de maladies à partir de données patients.</li><li>Système de recommandation de traitements personnalisés et chatbot médical d&apos;orientation.</li></ul></div></article>
-          <article><span className="cv-marker" /><div className="cv-time">2025</div><div><h3>Développeur d&apos;application intelligente <em>Capgemini · à préciser</em></h3><ul><li>Application desktop en C# avec architecture RAG et modèles LLM pour automatiser des processus métier.</li><li>Mécanismes d&apos;automatisation et recherche contextuelle au sein de l&apos;application.</li></ul></div></article>
-        </div></section>
+        <section className="cv-section" id="experience" data-reveal>
+          <h2>Expériences</h2>
+          <div className="cv-timeline">
+            {data.experiences.map((e) => (
+              <article key={e.id}>
+                <span className="cv-marker" />
+                <div className="cv-time">{e.time}</div>
+                <div>
+                  <h3>{e.title} <em>{e.company}</em></h3>
+                  <ul>
+                    {e.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-        <section className="cv-section" id="projects" data-reveal><h2>Projets académiques</h2><div className="cv-project-grid">{projects.map((project) => <article className="cv-project" key={project.title}><h3>{project.title}</h3><p>{project.body}</p><div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><small>{project.note}</small></article>)}</div></section>
+        <section className="cv-section" id="projects" data-reveal>
+          <h2>Projets académiques</h2>
+          <div className="cv-project-grid">
+            {data.projects.map((p) => (
+              <article className="cv-project" key={p.id}>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+                <div>{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
+                <small>{p.note}</small>
+              </article>
+            ))}
+          </div>
+        </section>
 
-        <section className="cv-section" id="skills" data-reveal><h2>Compétences</h2><div className="cv-skill-groups">{skillGroups.map(([label, tags]) => <div key={label as string}><h3>{label as string}</h3><p>{(tags as string[]).map((tag) => <span key={tag}>{tag}</span>)}</p></div>)}</div></section>
+        <section className="cv-section" id="skills" data-reveal>
+          <h2>Compétences</h2>
+          <div className="cv-skill-groups">
+            {data.skillGroups.map((g) => (
+              <div key={g.id}>
+                <h3>{g.label}</h3>
+                <p>{g.tags.map((t) => <span key={t}>{t}</span>)}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <section className="cv-section" id="education" data-reveal><h2>Formation</h2><div className="cv-rows"><div><strong>Cycle Ingénieur en Intelligence Artificielle &amp; Technologies des Données</strong><span>ENSAM, Meknès</span><time>2023 — 2027</time></div><div><strong>Cycle Préparatoire Intégré</strong><span>ENSAM, Meknès</span><time>2022 — 2023</time></div><div><strong>Baccalauréat Sciences Physiques</strong><span>Lycée El Mourabitine, Meknès</span><time>2021 — 2022</time></div></div></section>
+        <section className="cv-section" id="education" data-reveal>
+          <h2>Formation</h2>
+          <div className="cv-rows">
+            {data.education.map((e) => (
+              <div key={e.id}>
+                <strong dangerouslySetInnerHTML={{ __html: e.title }} />
+                <span>{e.place}</span>
+                <time>{e.time}</time>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <section className="cv-section" id="certifications" data-reveal><h2>Certifications</h2><div className="cv-rows cv-certifications"><div><strong>Python for Data Science, AI &amp; Development</strong><span>IBM / Coursera</span><time>2025</time></div><div><strong>ML: Decision Trees &amp; Random Forests</strong><span>365 Data Science</span><time>2025</time></div><div><strong>SQL Fundamentals</strong><span>365 Data Science</span><time>2026</time></div></div></section>
+        <section className="cv-section" id="certifications" data-reveal>
+          <h2>Certifications</h2>
+          <div className="cv-rows cv-certifications">
+            {data.certifications.map((c) => (
+              <div key={c.id}>
+                <strong dangerouslySetInnerHTML={{ __html: c.title }} />
+                <span>{c.place}</span>
+                <time>{c.time}</time>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <section className="cv-section cv-contact" id="contact" data-reveal><h2>Contact</h2><div className="cv-contact-box"><p>Une opportunité, un projet data/IA ou simplement échanger ? N&apos;hésitez pas.</p><form onSubmit={sendMessage}><input aria-label="Votre email" type="email" required placeholder="votre@email.com" /><button type="submit">Écrivez-moi un email</button></form>{message && <p className="cv-form-message" role="status">{message}</p>}<div><a href="https://www.linkedin.com/in/yassine-lamghari-61b70b330/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a></div></div></section>
+        <section className="cv-section cv-contact" id="contact" data-reveal>
+          <h2>Contact</h2>
+          <div className="cv-contact-box">
+            <p>{data.contact.intro}</p>
+            <form onSubmit={sendMessage}>
+              <input aria-label="Votre email" type="email" required placeholder={data.contact.placeholder} />
+              <button type="submit">{data.contact.button}</button>
+            </form>
+            {message && <p className="cv-form-message" role="status">{message}</p>}
+            <div>
+              <a href={data.profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href={data.profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+        </section>
       </div>
-      <footer className="cv-footer"><div>© 2026 Yassine Lamghari · Tous droits réservés.</div><div>Fait avec attention au Maroc</div></footer>
+      <footer className="cv-footer"><div>© {year} {data.profile.name} · Tous droits réservés.</div><div>Fait avec attention au Maroc</div></footer>
     </main>
   );
 }
