@@ -86,7 +86,7 @@ export default function Home() {
 
       <div className="cv-shell" id="accueil">
         <section className="cv-identity is-visible" data-reveal>
-          <img className="cv-avatar" src="/yassine-lamghari-portrait.png" alt="Yassine Lamghari" />
+          <img className="cv-avatar" src="/yassine-lamghari-new.jpg" alt="Yassine Lamghari" />
           <div>
             <h1>Yassine Lamghari</h1>
             <p className="cv-role"><span className="cv-role-swap" key={rotatingRoles[roleIndex]}>{rotatingRoles[roleIndex]}</span></p>
