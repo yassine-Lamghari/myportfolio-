@@ -76,8 +76,7 @@ export const content = {
       title: "Formation",
       items: [
         { degree: "Cycle Ingénieur en Intelligence Artificielle & Technologies des Données", school: "ENSAM, Meknès", date: "2023 — 2027" },
-        { degree: "Cycle Préparatoire Intégré", school: "ENSAM, Meknès", date: "2022 — 2023" },
-        { degree: "Baccalauréat Sciences Physiques", school: "Lycée El Mourabitine, Meknès", date: "2021 — 2022" }
+        { degree: "Cycle Préparatoire Intégré", school: "ENSAM, Meknès", date: "2022 — 2023" }
       ]
     },
     certifications: {
@@ -175,8 +174,7 @@ export const content = {
       title: "Education",
       items: [
         { degree: "Engineering Degree in Artificial Intelligence & Data Technologies", school: "ENSAM, Meknes", date: "2023 — 2027" },
-        { degree: "Integrated Preparatory Classes", school: "ENSAM, Meknes", date: "2022 — 2023" },
-        { degree: "High School Diploma in Physical Sciences", school: "Lycée El Mourabitine, Meknes", date: "2021 — 2022" }
+        { degree: "Integrated Preparatory Classes", school: "ENSAM, Meknes", date: "2022 — 2023" }
       ]
     },
     certifications: {

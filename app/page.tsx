@@ -2,9 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { content, Lang } from "./content";
+import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("fr");
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [activeSection, setActiveSection] = useState("about");
@@ -31,18 +40,15 @@ export default function Home() {
     setMessage(t.contact.successMsg); 
   };
 
+  // Avoid hydration mismatch for theme toggle
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
 
-    document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
+    // We no longer need the revealObserver, framer-motion handles it via whileInView
 
     const sectionObserver = new IntersectionObserver((entries) => {
       const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -65,16 +71,14 @@ export default function Home() {
       setRoleIndex((current) => (current + 1) % t.roles.length);
     }, 2600);
 
-    // Update HTML lang attribute
     document.documentElement.lang = lang;
 
     return () => {
-      revealObserver.disconnect();
       sectionObserver.disconnect();
       window.removeEventListener("scroll", updateProgress);
       if (roleTimer) window.clearInterval(roleTimer);
     };
-  }, [lang, t.roles.length]); 
+  }, [lang, t.roles.length, navItems]); // Note: navItems is redefined on render, but practically it's fine.
 
   return (
     <main className="cv-site">
@@ -82,32 +86,48 @@ export default function Home() {
         <div className="cv-progress" aria-hidden="true"><span style={{ width: `${scrollProgress}%` }} /></div>
         <div className="cv-topbar-inner">
           <a className="cv-brand" href="#accueil" onClick={() => goTo("accueil")}><span>YL</span> Yassine Lamghari</a>
+          
           <nav className={menuOpen ? "cv-nav is-open" : "cv-nav"} aria-label="Navigation">
-            {navItems.map(([label, id]) => <button className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "page" : undefined} onClick={() => goTo(id)} key={id}>{label}</button>)}
-            <button 
-              className="lang-toggle" 
-              onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-              style={{
-                background: 'none',
-                border: '1px solid currentColor',
-                padding: '4px 8px',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                marginLeft: '12px',
-                fontWeight: 'bold',
-                fontFamily: 'inherit',
-                fontSize: '0.9em'
-              }}
-            >
-              {lang === 'fr' ? 'EN' : 'FR'}
-            </button>
+            {navItems.map(([label, id]) => (
+              <button 
+                className={activeSection === id ? "is-active" : ""} 
+                aria-current={activeSection === id ? "page" : undefined} 
+                onClick={() => goTo(id)} 
+                key={id}
+              >
+                {label}
+              </button>
+            ))}
+            
+            <div style={{ display: 'flex', gap: '8px', marginLeft: '12px', alignItems: 'center' }}>
+              {/* Language Toggle */}
+              <button 
+                onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
+              >
+                {lang === 'fr' ? 'EN' : 'FR'}
+              </button>
+
+              {/* Theme Toggle */}
+              {mounted && (
+                <button
+                  onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+                >
+                  {resolvedTheme === 'dark' ? 'Light' : 'Dark'}
+                </button>
+              )}
+            </div>
           </nav>
           <button className="cv-menu" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen}>Menu</button>
         </div>
       </header>
 
       <div className="cv-shell" id="accueil">
-        <section className="cv-identity is-visible" data-reveal>
+        <motion.section 
+          className="cv-identity"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        >
           <img className="cv-avatar" src="/profile-photo.jpeg" alt="Yassine Lamghari" />
           <div>
             <h1>Yassine Lamghari</h1>
@@ -120,17 +140,17 @@ export default function Home() {
               <a href="mailto:yassin.lamghari14@gmail.com">Email</a>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="about" data-reveal>
+        <motion.section className="cv-section" id="about" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <h2>{t.about.title}</h2>
           <div className="cv-copy">
             <p dangerouslySetInnerHTML={{ __html: t.about.p1 }}></p>
             <p>{t.about.p2}</p>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="experience" data-reveal>
+        <motion.section className="cv-section" id="experience" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <h2>{t.experience.title}</h2>
           <div className="cv-timeline">
             {t.experience.items.map((exp, idx) => (
@@ -146,9 +166,9 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="projects" data-reveal>
+        <motion.section className="cv-section" id="projects" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <h2>{t.projects.title}</h2>
           <div className="cv-project-grid">
             {t.projects.items.map((project) => (
@@ -160,9 +180,9 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="skills" data-reveal>
+        <motion.section className="cv-section" id="skills" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <h2>{t.skills.title}</h2>
           <div className="cv-skill-groups">
             {t.skills.groups.map(([label, tags]) => (
@@ -172,9 +192,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="education" data-reveal>
+        <motion.section className="cv-section" id="education" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <h2>{t.education.title}</h2>
           <div className="cv-rows">
             {t.education.items.map((edu, idx) => (
@@ -185,9 +205,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section" id="certifications" data-reveal>
+        <motion.section className="cv-section" id="certifications" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <h2>{t.certifications.title}</h2>
           <div className="cv-rows cv-certifications">
             {t.certifications.items.map((cert, idx) => (
@@ -198,9 +218,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="cv-section cv-contact" id="contact" data-reveal>
+        <motion.section className="cv-section cv-contact" id="contact" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <h2>{t.contact.title}</h2>
           <div className="cv-contact-box">
             <p>{t.contact.desc}</p>
@@ -214,7 +234,7 @@ export default function Home() {
               <a href="https://github.com/yassine-Lamghari" target="_blank" rel="noreferrer">GitHub</a>
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
       
       <footer className="cv-footer">
