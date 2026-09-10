@@ -25,43 +25,45 @@ export const content = {
       items: [
         {
           date: "Sept. 2025 — 2026",
-          title: "AI Backend Engineer",
-          company: "Arimayi · France",
+          title: "Développeur Backend IA & Orchestration",
+          company: "Arimayi, France",
           tasks: [
-            "Conception d'un backend d'orchestration Python/FastAPI pour coordonner des services IA : analyse de sentiment, traduction, résumé et OCR.",
-            "Communication asynchrone entre API centrale et micro-services, avec intégration de modèles LLM externes et base de données.",
-            "Conteneurisation Docker, Docker Compose et stratégie de tests unitaires, intégration et end-to-end avec Pytest."
+            "Orchestrateur d’IA – Architecture Microservices : conception d’un backend Python/FastAPI coordonnant plusieurs services IA de traduction, résumé, OCR et analyse de sentiment, avec communication inter-services, intégration LLM, Docker et tests unitaires, intégration et E2E.",
+            "IA-Orchestrator – Orchestrateur LLM pédagogique multilingue : développement d’une API FastAPI intégrant détection/traduction, analyse d’intention et routage adaptatif vers LLM, RAG et GraphRAG. Mise en place d’évaluation automatique, fallbacks, retries, cache Redis, JWT, idempotence et rate limiting.",
+            "Plateforme IA d’Audit de Code & Dette Technique : développement d’une plateforme SaaS d’analyse de repositories combinant analyse statique, RAG et LLM pour identifier la dette technique, les risques de sécurité et d’architecture, produire un scoring explicable et générer des recommandations de remédiation."
           ]
         },
-
         {
-          date: "2025",
-          title: "Développeur d'application intelligente",
-          company: "Capgemini · à préciser",
+          date: "Juil. 2026 — Oct. 2026",
+          title: "Stagiaire Software Engineer – VieSuivi",
+          company: "Capgemini Engineering",
           tasks: [
-            "Application desktop en C# avec architecture RAG et modèles LLM pour automatiser des processus métier.",
-            "Mécanismes d'automatisation et recherche contextuelle au sein de l'application."
+            "Conception et développement de VieSuivi, application desktop Python de suivi industriel (APQP/PPAP, EI et projets) intégrant dashboard KPI, reporting, import/export Excel et persistance SQLite.",
+            "Mise en place d’une architecture en couches (UI, services, repositories, base de données) et intégration de fonctionnalités RAG, LLM, embeddings et recherche vectorielle pour la recherche contextuelle dans les données.",
+            "Développement des interfaces avec PySide6/Qt, persistance avec SQLAlchemy/SQLite, visualisation avec Matplotlib, automatisation Excel avec OpenPyXL, tests Pytest et génération de l’exécutable avec PyInstaller."
           ]
         }
       ]
     },
     projects: {
-      title: "Projets académiques",
+      title: "Projets clés",
       items: [
-        { title: "Architecture RAG & Chatbot Intelligent", body: "Pipeline Retrieval-Augmented Generation avec base de connaissances indexée et interface conversationnelle capable de répondre à des questions contextuelles.", tags: ["RAG", "LangChain", "LlamaIndex", "Python"], note: "Projet personnel · 2025" },
-        { title: "Prévision Forex EUR/USD", body: "Modèle prédictif de séries temporelles à base de LSTM, collecte via Alpha Vantage et analyses exploratoires approfondies.", tags: ["LSTM", "Pandas", "Scikit-learn", "API"], note: "Data Science · 2025" },
-        { title: "Détection de tricherie — Computer Vision", body: "Système de surveillance de flux vidéo en temps réel pour identifier des comportements suspects en salle d’examen.", tags: ["OpenCV", "TensorFlow", "CNN", "Python"], note: "Computer Vision · 2025" },
+        { title: "Architecture RAG & Chatbot Intelligent", body: "Conception d’un pipeline Retrieval-Augmented Generation avec base de connaissances vectorisée et recherche sémantique pour générer des réponses contextuelles pertinentes.", tags: ["RAG", "LangChain", "LlamaIndex", "Python", "GraphRAG"], note: "Projet personnel · 2025" },
+        { title: "Prévision du taux de change Forex EUR/USD", body: "Développement d’un modèle prédictif de séries temporelles basé sur des réseaux LSTM, avec collecte des données via Alpha Vantage et analyse avec Pandas et Scikit-learn.", tags: ["LSTM", "Pandas", "Scikit-learn", "API"], note: "Data Science · 2025" },
+        { title: "Détection de tricherie – Computer Vision", body: "Développement d’un système d’analyse de flux vidéo en temps réel avec Python, OpenCV et TensorFlow pour détecter automatiquement des comportements suspects.", tags: ["OpenCV", "TensorFlow", "CNN", "Python"], note: "Computer Vision · 2025" },
         { title: "Simulateur de Bowling en Réalité Augmentée", body: "Expérience immersive de bowling conçue avec Unity et les technologies XR pour une interaction réaliste.", tags: ["Unity", "XR", "AR/VR"], note: "Immersive Tech · 2025" },
         { title: "Plateforme d’automatisation de recherche", body: "Plateforme qui automatise la recherche de stage et d’emploi, l’analyse des offres et la génération de documents.", tags: ["Next.js", "Supabase", "LLM", "LaTeX"], note: "Projet personnel · 2026" }
       ]
     },
     skills: {
-      title: "Compétences",
+      title: "Compétences Techniques",
       groups: [
-        ["MACHINE LEARNING, IA & COMPUTER VISION", ["Python", "Scikit-learn", "PyTorch", "TensorFlow", "LSTM", "CNN", "OpenCV", "RAG"]],
-        ["GENAI & NLP", ["LangChain", "LlamaIndex", "LLM", "NLP", "Agents", "Groq", "Recherche sémantique"]],
-        ["ENGINEERING & MLOPS", ["FastAPI", "Docker", "Docker Compose", "REST API", "Git", "GitHub", "Pytest"]],
-        ["DATA & CLOUD", ["SQL", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Google Colab"]]
+        ["IA, LLM & RAG", ["LLM", "RAG", "GraphRAG", "NLP", "Embeddings", "Recherche Vectorielle", "Agents IA", "Prompt Engineering", "LangChain", "LlamaIndex", "FastEmbed", "Mistral", "Groq", "Gemini", "Ollama"]],
+        ["MACHINE LEARNING & COMPUTER VISION", ["Scikit-learn", "PyTorch", "TensorFlow", "Keras", "LSTM", "CNN", "OpenCV", "Séries Temporelles"]],
+        ["BACKEND & ARCHITECTURE", ["Python", "FastAPI", "Pydantic", "API REST", "Architectures Microservices", "Architecture en Couches", "JWT", "Idempotence", "Rate Limiting"]],
+        ["DATA & BASES DE DONNÉES", ["PostgreSQL", "pgvector", "Neo4j", "Redis", "SQLite", "SQLAlchemy", "SQL", "NumPy", "Pandas", "Matplotlib", "OpenPyXL"]],
+        ["DATA ENGINEERING", ["Kafka", "Airflow", "Spark", "Data Warehouse", "MinIO"]],
+        ["DESKTOP, DEVOPS & QUALITÉ", ["PySide6/Qt", "Docker", "Docker Compose", "Git", "GitHub", "Pytest", "PyInstaller", "Semgrep", "Pylint", "Bandit"]]
       ]
     },
     education: {
@@ -115,43 +117,45 @@ export const content = {
       items: [
         {
           date: "Sept. 2025 — 2026",
-          title: "AI Backend Engineer",
-          company: "Arimayi · France",
+          title: "AI & Orchestration Backend Developer",
+          company: "Arimayi, France",
           tasks: [
-            "Designed a Python/FastAPI orchestration backend to coordinate AI services: sentiment analysis, translation, summarization, and OCR.",
-            "Asynchronous communication between central API and microservices, with external LLM models and database integration.",
-            "Docker containerization, Docker Compose, and unit/integration/E2E testing strategy using Pytest."
+            "AI Orchestrator – Microservices Architecture: Designed a Python/FastAPI backend coordinating multiple AI services (translation, summarization, OCR, sentiment analysis) with inter-service communication, LLM integration, Docker, and unit/integration/E2E testing.",
+            "IA-Orchestrator – Multilingual Educational LLM Orchestrator: Developed a FastAPI API integrating detection/translation, intent analysis, and adaptive routing to LLM, RAG, and GraphRAG. Implemented automatic evaluation, fallbacks, retries, Redis caching, JWT, idempotency, and rate limiting.",
+            "AI Platform for Code Audit & Technical Debt: Developed a SaaS repository analysis platform combining static analysis, RAG, and LLMs to identify technical debt, security/architecture risks, produce explainable scoring, and generate remediation recommendations."
           ]
         },
-
         {
-          date: "2025",
-          title: "Intelligent Application Developer",
-          company: "Capgemini · TBD",
+          date: "Jul. 2026 — Oct. 2026",
+          title: "Software Engineer Intern – VieSuivi",
+          company: "Capgemini Engineering",
           tasks: [
-            "C# desktop application with RAG architecture and LLMs to automate business processes.",
-            "Implemented automation mechanisms and contextual search within the application."
+            "Designed and developed VieSuivi, a Python desktop application for industrial tracking (APQP/PPAP, EI, and projects) featuring a KPI dashboard, reporting, Excel import/export, and SQLite persistence.",
+            "Implemented a layered architecture (UI, services, repositories, database) and integrated RAG, LLM, embeddings, and vector search capabilities for contextual data retrieval.",
+            "Developed interfaces with PySide6/Qt, persistence with SQLAlchemy/SQLite, data visualization with Matplotlib, Excel automation with OpenPyXL, Pytest testing, and executable generation with PyInstaller."
           ]
         }
       ]
     },
     projects: {
-      title: "Academic Projects",
+      title: "Key Projects",
       items: [
-        { title: "RAG Architecture & Smart Chatbot", body: "Retrieval-Augmented Generation pipeline with an indexed knowledge base and a conversational interface capable of answering contextual questions.", tags: ["RAG", "LangChain", "LlamaIndex", "Python"], note: "Personal Project · 2025" },
-        { title: "EUR/USD Forex Forecasting", body: "LSTM-based time series predictive model, data collection via Alpha Vantage, and in-depth exploratory analysis.", tags: ["LSTM", "Pandas", "Scikit-learn", "API"], note: "Data Science · 2025" },
-        { title: "Cheating Detection — Computer Vision", body: "Real-time video stream monitoring system to identify suspicious behaviors in exam rooms.", tags: ["OpenCV", "TensorFlow", "CNN", "Python"], note: "Computer Vision · 2025" },
+        { title: "RAG Architecture & Smart Chatbot", body: "Designed a Retrieval-Augmented Generation pipeline with a vectorized knowledge base and semantic search to generate relevant contextual responses.", tags: ["RAG", "LangChain", "LlamaIndex", "Python", "GraphRAG"], note: "Personal Project · 2025" },
+        { title: "EUR/USD Forex Forecasting", body: "Developed an LSTM-based time series predictive model, with data collection via Alpha Vantage and analysis using Pandas and Scikit-learn.", tags: ["LSTM", "Pandas", "Scikit-learn", "API"], note: "Data Science · 2025" },
+        { title: "Cheating Detection – Computer Vision", body: "Developed a real-time video stream analysis system using Python, OpenCV, and TensorFlow to automatically detect suspicious behaviors.", tags: ["OpenCV", "TensorFlow", "CNN", "Python"], note: "Computer Vision · 2025" },
         { title: "Augmented Reality Bowling Simulator", body: "Immersive bowling experience designed with Unity and XR technologies for realistic interaction.", tags: ["Unity", "XR", "AR/VR"], note: "Immersive Tech · 2025" },
         { title: "Job Search Automation Platform", body: "Platform that automates job/internship searches, analyzes offers, and generates documents.", tags: ["Next.js", "Supabase", "LLM", "LaTeX"], note: "Personal Project · 2026" }
       ]
     },
     skills: {
-      title: "Skills",
+      title: "Technical Skills",
       groups: [
-        ["MACHINE LEARNING, AI & COMPUTER VISION", ["Python", "Scikit-learn", "PyTorch", "TensorFlow", "LSTM", "CNN", "OpenCV", "RAG"]],
-        ["GENAI & NLP", ["LangChain", "LlamaIndex", "LLM", "NLP", "Agents", "Groq", "Semantic Search"]],
-        ["ENGINEERING & MLOPS", ["FastAPI", "Docker", "Docker Compose", "REST API", "Git", "GitHub", "Pytest"]],
-        ["DATA & CLOUD", ["SQL", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Google Colab"]]
+        ["AI, LLM & RAG", ["LLM", "RAG", "GraphRAG", "NLP", "Embeddings", "Vector Search", "AI Agents", "Prompt Engineering", "LangChain", "LlamaIndex", "FastEmbed", "Mistral", "Groq", "Gemini", "Ollama"]],
+        ["MACHINE LEARNING & COMPUTER VISION", ["Scikit-learn", "PyTorch", "TensorFlow", "Keras", "LSTM", "CNN", "OpenCV", "Time Series"]],
+        ["BACKEND & ARCHITECTURE", ["Python", "FastAPI", "Pydantic", "REST API", "Microservices Architectures", "Layered Architecture", "JWT", "Idempotency", "Rate Limiting"]],
+        ["DATA & DATABASES", ["PostgreSQL", "pgvector", "Neo4j", "Redis", "SQLite", "SQLAlchemy", "SQL", "NumPy", "Pandas", "Matplotlib", "OpenPyXL"]],
+        ["DATA ENGINEERING", ["Kafka", "Airflow", "Spark", "Data Warehouse", "MinIO"]],
+        ["DESKTOP, DEVOPS & QUALITY", ["PySide6/Qt", "Docker", "Docker Compose", "Git", "GitHub", "Pytest", "PyInstaller", "Semgrep", "Pylint", "Bandit"]]
       ]
     },
     education: {

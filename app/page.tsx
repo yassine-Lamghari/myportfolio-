@@ -211,13 +211,18 @@ export default function Home() {
 
         <motion.section className="cv-section" id="projects" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <h2>{t.projects.title}</h2>
-          <div className="cv-project-grid">
-            {t.projects.items.map((project) => (
-              <article className="cv-project" key={project.title}>
-                <h3>{project.title}</h3>
-                <p>{project.body}</p>
-                <div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <small>{project.note}</small>
+          <div className="cv-timeline">
+            {t.projects.items.map((project, idx) => (
+              <article key={idx}>
+                <span className="cv-marker" />
+                <div className="cv-time">{project.note}</div>
+                <div>
+                  <h3>{project.title}</h3>
+                  <ul>
+                    <li>{project.body}</li>
+                    <li><strong>Technologies :</strong> {project.tags.join(', ')}</li>
+                  </ul>
+                </div>
               </article>
             ))}
           </div>
@@ -229,7 +234,62 @@ export default function Home() {
             {t.skills.groups.map(([label, tags]) => (
               <div key={label as string}>
                 <h3>{label as string}</h3>
-                <p>{(tags as string[]).map((tag) => <span key={tag}>{tag}</span>)}</p>
+                <p>
+                  {(tags as string[]).map((tag) => {
+                    const iconMap: Record<string, string> = {
+                      "Python": "python",
+                      "Scikit-learn": "scikitlearn",
+                      "PyTorch": "pytorch",
+                      "TensorFlow": "tensorflow",
+                      "Keras": "keras",
+                      "OpenCV": "opencv",
+                      "LangChain": "langchain",
+                      "LlamaIndex": "https://www.google.com/s2/favicons?domain=llamaindex.ai&sz=128",
+                      "Mistral": "mistralai",
+                      "Groq": "https://www.google.com/s2/favicons?domain=groq.com&sz=128",
+                      "Gemini": "googlegemini",
+                      "Ollama": "ollama",
+                      "FastAPI": "fastapi",
+                      "Pydantic": "pydantic",
+                      "PostgreSQL": "postgresql",
+                      "Neo4j": "neo4j",
+                      "Redis": "redis",
+                      "SQLite": "sqlite",
+                      "SQLAlchemy": "sqlalchemy",
+                      "NumPy": "numpy",
+                      "Pandas": "pandas",
+                      "Kafka": "apachekafka",
+                      "Airflow": "apacheairflow",
+                      "Spark": "apachespark",
+                      "MinIO": "minio",
+                      "PySide6/Qt": "qt",
+                      "Docker": "docker",
+                      "Docker Compose": "docker",
+                      "Git": "git",
+                      "GitHub": "github",
+                      "Pytest": "pytest",
+                      "Semgrep": "https://www.google.com/s2/favicons?domain=semgrep.dev&sz=128",
+                      "Jupyter": "jupyter",
+                      "Google Colab": "googlecolab",
+                      "SQL": "postgresql"
+                    };
+                    const iconSlug = iconMap[tag];
+                    const imgSrc = iconSlug?.startsWith("http") ? iconSlug : `https://cdn.simpleicons.org/${iconSlug}`;
+                    return (
+                      <span key={tag} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                        {iconSlug && (
+                          <img 
+                            src={imgSrc} 
+                            alt={tag} 
+                            style={{ width: '14px', height: '14px' }} 
+                            onError={(e) => (e.currentTarget.style.display = 'none')}
+                          />
+                        )}
+                        {tag}
+                      </span>
+                    );
+                  })}
+                </p>
               </div>
             ))}
           </div>
