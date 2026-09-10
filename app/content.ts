@@ -33,15 +33,7 @@ export const content = {
             "Conteneurisation Docker, Docker Compose et stratégie de tests unitaires, intégration et end-to-end avec Pytest."
           ]
         },
-        {
-          date: "Juin — Sept. 2025",
-          title: "Stagiaire IA",
-          company: "CHU · Fès, Maroc",
-          tasks: [
-            "Développement d'un module de détection de maladies à partir de données patients.",
-            "Système de recommandation de traitements personnalisés et chatbot médical d'orientation."
-          ]
-        },
+
         {
           date: "2025",
           title: "Développeur d'application intelligente",
@@ -131,15 +123,7 @@ export const content = {
             "Docker containerization, Docker Compose, and unit/integration/E2E testing strategy using Pytest."
           ]
         },
-        {
-          date: "June — Sept. 2025",
-          title: "AI Intern",
-          company: "CHU · Fes, Morocco",
-          tasks: [
-            "Developed a disease detection module based on patient data.",
-            "Built a personalized treatment recommendation system and a medical orientation chatbot."
-          ]
-        },
+
         {
           date: "2025",
           title: "Intelligent Application Developer",

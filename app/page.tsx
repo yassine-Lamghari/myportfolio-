@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { content, Lang } from "./content";
 import { useTheme } from "next-themes";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -14,6 +14,7 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("fr");
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [activeSection, setActiveSection] = useState("about");
@@ -43,6 +44,10 @@ export default function Home() {
   // Avoid hydration mismatch for theme toggle
   useEffect(() => {
     setMounted(true);
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 1500); // 1.5 seconds delay
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -81,7 +86,43 @@ export default function Home() {
   }, [lang, t.roles.length, navItems]); // Note: navItems is redefined on render, but practically it's fine.
 
   return (
-    <main className="cv-site">
+    <>
+      <AnimatePresence>
+        {showIntro && (
+          <motion.div
+            key="intro-loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              width: '100vw',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              backgroundColor: 'var(--bg)',
+              zIndex: 9999
+            }}
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              style={{
+                width: '50px',
+                height: '50px',
+                border: '4px solid var(--line, rgba(169,191,235,.15))',
+                borderTop: '4px solid var(--blue, #377dff)',
+                borderRadius: '50%',
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <main className="cv-site">
       <header className="cv-topbar">
         <div className="cv-progress" aria-hidden="true"><span style={{ width: `${scrollProgress}%` }} /></div>
         <div className="cv-topbar-inner">
@@ -242,5 +283,6 @@ export default function Home() {
         <div>{t.footer.madeIn}</div>
       </footer>
     </main>
+    </>
   );
 }
