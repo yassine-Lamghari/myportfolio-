@@ -126,7 +126,7 @@ export default function Home() {
       <header className="cv-topbar">
         <div className="cv-progress" aria-hidden="true"><span style={{ width: `${scrollProgress}%` }} /></div>
         <div className="cv-topbar-inner">
-          <a className="cv-brand" href="#accueil" onClick={() => goTo("accueil")}><span>YL</span> Yassine Lamghari</a>
+          <div className="cv-brand" aria-hidden="true"></div>
           
           <nav className={menuOpen ? "cv-nav is-open" : "cv-nav"} aria-label="Navigation">
             {navItems.map(([label, id]) => (
